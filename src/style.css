@@ -1,0 +1,93 @@
+* {
+  font-family: 'Roboto', sans-serif;
+  line-height: 30px;
+  font-weight: 100;
+  font-size: small;
+}
+
+body {
+  background: rgb(255, 247, 247);
+  display: grid;
+  place-items: center;
+}
+
+.main {
+  width: 50%;
+  height: auto;
+  background: #fff;
+  margin-top: 80px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+li {
+  padding: 2px 8px;
+  height: 40px;
+  font-weight: 400;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+}
+
+input {
+  border: none;
+  margin: 0;
+  width: 98%;
+  height: 100%;
+  padding-left: 2px;
+  font-style: italic;
+}
+
+img {
+  height: 18px;
+  width: 18px;
+}
+
+.newlist {
+  display: flex;
+  padding: 4px 8px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.check {
+  width: 18px;
+  height: 18px;
+}
+
+.text {
+  width: 90%;
+}
+
+.text.complete {
+  text-decoration: line-through;
+}
+
+.newlist.complete li {
+  text-decoration: line-through;
+}
+
+.delete {
+  border-style: none;
+  width: 18px;
+  height: 18px;
+}
+
+.clear {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(233, 217, 217, 0.3);
+}
