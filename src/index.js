@@ -98,3 +98,5 @@ function updateList() {
 }
 
 init();
+
+newTodoForm.addEventListener('submit').newTodo();
