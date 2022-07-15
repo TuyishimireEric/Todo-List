@@ -20,6 +20,31 @@ function* index() {
   }
 }
 
+function updateTodos(newTodos) {
+  todos = newTodos;
+  localStorage.setItem('todos', JSON.stringify(todos));
+
+  updateList();
+}
+
+function updateList() {
+  const description = todos.map((todo) => `
+            <li class="card todo-list-item ${todo.complete ? 'completed' : ''}" data-id="${todo.id}">
+              <input type="checkbox" ${todo.complete ? 'checked' : ''} class="checkbox"/>
+              <input type="text"value="${todo.description}" class="inputtext"/>
+              <button type="button">🗑</button>
+            </li>
+          `).join('');
+
+  todoList.innerHTML = description;
+
+  const deleteButtons = todoList.querySelectorAll('.todo-list-item button');
+  deleteButtons.forEach((button) => button.addEventListener('click', removeTodo));
+
+  const completedCheckboxes = todoList.querySelectorAll('.checkbox');
+  completedCheckboxes.forEach((checkbox) => checkbox.addEventListener('click', toggleComplete));
+}
+
 function createTodo({ description = '', completed = false } = {}) {
   const id = index().next().value;
 
@@ -33,8 +58,8 @@ function createTodo({ description = '', completed = false } = {}) {
 function newTodo(e) {
   e.preventDefault();
 
-  const newTodoContentInput = this.querySelector('[name="new-todo-content"]');
-  const description = newTodoContentInput.value || '';
+  const newTodoText = this.querySelector('[name="new-todo-content"]');
+  const description = newTodoText.value || '';
 
   if (description.length === 0) {
     return;
@@ -44,7 +69,7 @@ function newTodo(e) {
 
   const newTodos = [...todos, newTodo];
 
-  newTodoContentInput.value = '';
+  newTodoText.value = '';
   updateTodos(newTodos);
 }
 
@@ -70,31 +95,6 @@ function toggleComplete() {
   newTodos[id] = { ...newTodos[id], complete: this.checked };
 
   updateTodos(newTodos);
-}
-
-function updateTodos(newTodos) {
-  todos = newTodos;
-  localStorage.setItem('todos', JSON.stringify(todos));
-
-  updateList();
-}
-
-function updateList() {
-  const description = todos.map((todo) => `
-            <li class="card todo-list-item ${todo.complete ? 'completed' : ''}" data-id="${todo.id}">
-              <input type="checkbox" ${todo.complete ? 'checked' : ''} />
-              <p>${todo.description}</p>
-              <button type="button">🗑</button>
-            </li>
-          `).join('');
-
-  todoList.innerHTML = description;
-
-  const deleteButtons = todoList.querySelectorAll('.todo-list-item button');
-  deleteButtons.forEach((button) => button.addEventListener('click', removeTodo));
-
-  const completedCheckboxes = todoList.querySelectorAll('.todo-list-item input[type="checkbox"]');
-  completedCheckboxes.forEach((checkbox) => checkbox.addEventListener('click', toggleComplete));
 }
 
 init();

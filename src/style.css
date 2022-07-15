@@ -89,13 +89,15 @@ button {
   width: 100%;
 }
 
-.todo-list-item p {
+.todo-list-item .inputtext {
   flex-grow: 1;
   margin: 0 1rem;
   padding: 0;
+  border: none;
+  background: none;
 }
 
-.todo-list-item.completed p {
+.todo-list-item.completed .inputtext {
   text-decoration: line-through;
 }
 
@@ -130,4 +132,8 @@ button {
 .todo-list-item button:focus {
   transform: scale(0.9);
   outline: none;
+}
+
+.clearComplete {
+  height: 40px;
 }
