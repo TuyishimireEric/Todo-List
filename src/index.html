@@ -1,22 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <title>Webpack</title>
-</head>
-<body>
-    <form class="main">
-        <ul class="list">
-            <li class="top">Today's To Do<img alt="icon" src="../images/icon.svg"></li>
-            <li><input type="text" class="action" placeholder="Add you list..."></li>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To Do list</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <form class="new-todo-form" id="new-todo-form" submit="newTodo()">
+          <div class="card">
+            <input type="text" name="new-todo-content" placeholder="What to do..." />
+            <button type="submit" name="new-todo-submit">Add</button>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <ul class="todo-list">
         </ul>
-        <div class="clear">Clear content</div>
-    </form>
-    <script src="../dist/main.js"></script>
-</body>
+      </div>
+    </div>
+    <script src="../dist/main.js"> </script>
+  </body>
 </html>
