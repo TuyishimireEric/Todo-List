@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { updateTodos } from '../index.js';
 
 function toggleComplete(id) {
