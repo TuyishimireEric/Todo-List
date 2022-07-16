@@ -10,16 +10,6 @@ function init() {
   updateList();
 }
 
-function* index() {
-  let i = todos.length;
-
-  while (true) {
-    yield i;
-
-    i += 1;
-  }
-}
-
 function updateTodos(newTodos) {
   todos = newTodos;
   localStorage.setItem('todos', JSON.stringify(todos));
@@ -39,20 +29,14 @@ function updateList() {
   todoList.innerHTML = description;
 
   const deleteButtons = todoList.querySelectorAll('.todo-list-item button');
-  deleteButtons.forEach((button) => button.addEventListener('click', removeTodo));
+
+  deleteButtons.forEach((button) => button.addEventListener('click', (event) => {
+    const li = event.target.parentElement;
+    removeTodo(li.id);
+  }));
 
   const completedCheckboxes = todoList.querySelectorAll('.checkbox');
   completedCheckboxes.forEach((checkbox) => checkbox.addEventListener('click', toggleComplete));
-}
-
-function createTodo({ description = '', completed = false } = {}) {
-  const id = index().next().value;
-
-  return {
-    id,
-    description,
-    complete: completed,
-  };
 }
 
 function newTodo(e) {
@@ -65,25 +49,29 @@ function newTodo(e) {
     return;
   }
 
-  const newTodo = createTodo({ description });
-
-  const newTodos = [...todos, newTodo];
+  const newTodo = {
+    description: newTodoText.value,
+    completed: false,
+    id: todos.length,
+  };
 
   newTodoText.value = '';
-  updateTodos(newTodos);
+  todos = [...todos, newTodo];
+  localStorage.setItem('todos', JSON.stringify(todos));
+  updateList();
 }
 
-function removeTodo(e) {
-  e.preventDefault();
-  if (!this.parentNode && !this.parentNode.dataset && !this.parentNode.dataset.id) {
-    return;
-  }
-
-  const id = +this.parentNode.dataset.id;
-  const newTodos = todos.filter((todo) => todo.id !== id);
-
-  updateTodos(newTodos);
-}
+const removeTodo = (targetIndex) => {
+  const filterTodo = todos.filter((todo) => +todo.id !== +targetIndex);
+  const newTodos = filterTodo.map((todo, id) => ({
+    description: todo.description,
+    completed: todo.completed,
+    id,
+  }));
+  localStorage.setItem('todos', JSON.stringify(newTodos));
+  todos = newTodos;
+  updateList();
+};
 
 function toggleComplete() {
   if (!this.parentNode && !this.parentNode.dataset && !this.parentNode.dataset.id) {
