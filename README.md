@@ -9,7 +9,7 @@ Project image
 - JS
 ## Live Demo
 
-[Todo List](https://tuyishimireeric.github.io/Todo-List/dist/)
+[Todo List](https://tuyishimireeric.github.io/Todo-List/src/)
 
 ## Getting Started
 
