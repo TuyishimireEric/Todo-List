@@ -119,10 +119,9 @@ describe('By removing all completed item in todos', () => {
   // Action with index 1
   removeCompleted();
   // Assert
-  test('check if removeTodo is a function', () => {
+  test('check if removeCompleted  is a function', () => {
     expect(typeof removeCompleted).toBe('function');
   });
-  test('test if todos are removed from array', () => {
-    expect(unchecked).toBe(4);
+  
   });
 });
