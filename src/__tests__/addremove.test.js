@@ -31,9 +31,9 @@ function newTodo(e) {
 }
 
 const removeTodo = (targetIndex) => {
-const todoListArr = JSON.parse(localStorage.getItem('todos') || '[]');
-const updateList = todoListArr.filter((todo) => todo.id !== parseInt(targetIndex, 10));
-rest = updateList.length;
+  const todoListArr = JSON.parse(localStorage.getItem('todos') || '[]');
+  const updateList = todoListArr.filter((todo) => todo.id !== parseInt(targetIndex, 10));
+  rest = updateList.length;
 };
 
 describe('By adding item in todos', () => {
