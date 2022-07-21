@@ -14,10 +14,11 @@ let rest;
 
 function newTodo(e) {
   // e.preventDefault();
+  const newTask = e;
   const todos = JSON.parse(localStorage.getItem('todos') || '[]');
 
   const newTodo = {
-    description: e,
+    description: newTask,
     completed: false,
     id: todos[todos.length - 1] ? todos[todos.length - 1].id + 1 : todos.length + 1,
   };
@@ -36,32 +37,26 @@ const removeTodo = (targetIndex) => {
 };
 
 describe('By adding item in todos', () => {
+  // action
   newTodo('finish project');
   newTodo('submit project');
-  const message = {
-    check: 'check if newTodo is a function',
-    test: 'test if newTodo is adding',
-  };
-  test(message.check, () => {
+  newTodo('done');
+  test('check if newTodo is a function', () => {
     expect(typeof newTodo).toBe('function');
   });
-  test(message.test, () => {
-    expect(Array).toBe(2);
+  test('test if newTodo is adding', () => {
+    expect(Array).toBe(3);
   });
 });
 
 describe('By removing item in todos', () => {
-  const message = {
-    check: 'check if removeTodo is a function',
-    test: 'test if todos are removed from array',
-  };
   // Action with index 1
   removeTodo(1);
   // Assert
-  test(message.check, () => {
+  test('check if removeTodo is a function', () => {
     expect(typeof removeTodo).toBe('function');
   });
-  test(message.test, () => {
-    expect(rest).toBe(1);
+  test('test if todos are removed from array', () => {
+    expect(rest).toBe(2);
   });
 });
