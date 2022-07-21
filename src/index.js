@@ -87,4 +87,4 @@ clear.addEventListener('click', () => {
 init();
 
 // eslint-disable-next-line import/prefer-default-export
-export { updateTodos };
+export { updateTodos, newTodo };
