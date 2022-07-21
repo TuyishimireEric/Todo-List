@@ -122,6 +122,7 @@ describe('By removing all completed item in todos', () => {
   test('check if removeCompleted  is a function', () => {
     expect(typeof removeCompleted).toBe('function');
   });
-  
+  test('test if the completed todos are removed from array', () => {
+    expect(unchecked).toBe(4);
   });
 });
