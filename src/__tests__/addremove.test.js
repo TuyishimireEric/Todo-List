@@ -1,8 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-// import { newTodo } from '../index.js';
-
 document.body.innerHTML = `
     <div class="row">
             <ul class="todo-list">
@@ -13,7 +11,6 @@ let Array;
 let rest;
 
 function newTodo(e) {
-  // e.preventDefault();
   const newTask = e;
   const todos = JSON.parse(localStorage.getItem('todos') || '[]');
 
@@ -22,12 +19,9 @@ function newTodo(e) {
     completed: false,
     id: todos[todos.length - 1] ? todos[todos.length - 1].id + 1 : todos.length + 1,
   };
-
-  // document.getElementById('new-task').value = '';
   const updatedTodos = [...todos, newTodo];
   localStorage.setItem('todos', JSON.stringify(updatedTodos));
   Array = updatedTodos.length;
-  // updateList();
 }
 
 const removeTodo = (targetIndex) => {
